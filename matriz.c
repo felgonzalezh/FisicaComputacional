@@ -4,19 +4,23 @@
 
 float *load_data(char *filein, int *nf, int *nc){
   FILE *in;
+  char c;
   float *array;
+  int nf, nc;
   in = fopen(filein, "r");
   do{
     c = fgetc(in);
     if(c=='\n'){
       nf++;
-    }
-    if(!(data = malloc(sizeof(float)*nf *nc))){
+    }while(c!=EOF);
+    
+    if(!(array = malloc(sizeof(float)*nf *nc))){
       fprintf(stderr, "Problem with memory allocation");
       exit(1);
     }
+    rewind(in);
     
-  return 0;
+  return array;
 }
 
 int main (int arcg, char **argv){
@@ -31,20 +35,8 @@ int main (int arcg, char **argv){
   char c;
   
   in = fopen(filein, "r");
-  
-  /*  do{
-    c = fgetc(in);
-    if(c=='\n'){
-      nf++;
-    }
-  }while(c!=EOF);
-
-  if(!(data = malloc(sizeof(float)*nf *nc))){
-      fprintf(stderr, "Problem with memory allocation");
-      exit(1);
-      }*/
-
-  data=load_data(filein, &nf,&nc);
+  /*
+   data=load_data(filein, &nf,&nc);
   
   /*  for(i=0;i<nc;i++){
     for(j=0;j<nf;j++){
@@ -54,21 +46,9 @@ int main (int arcg, char **argv){
 
   printf("%d", nf);
 
-  fclose(in);
-
-
-
-  /* data=load_data(filein, &nf,&nc);
-
-  /*  FILE *in;
-  char filename argv[1];
-  int i;
-in = fopen(filename, "r");
-  if(!in){
-    printf("problems opening the file %s\n", filename);
-    exit(1);
-  }
-  
+  /* fclose(in);
+   */
+  /*
   printf("Now I am reading\n");
   for(i=0;i<20;i++){
     fscanf(in, "%d\n", &var);
