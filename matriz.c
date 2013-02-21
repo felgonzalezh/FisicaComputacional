@@ -3,10 +3,19 @@
 #include <gsl/gsl_eigen.h>
 
 float *load_data(char *filein, int *nf, int *nc){
+  FILE *in;
   float *array;
-
-
-
+  in = fopen(filein, "r");
+  do{
+    c = fgetc(in);
+    if(c=='\n'){
+      nf++;
+    }
+    if(!(data = malloc(sizeof(float)*nf *nc))){
+      fprintf(stderr, "Problem with memory allocation");
+      exit(1);
+    }
+    
   return 0;
 }
 
@@ -23,7 +32,7 @@ int main (int arcg, char **argv){
   
   in = fopen(filein, "r");
   
-  do{
+  /*  do{
     c = fgetc(in);
     if(c=='\n'){
       nf++;
@@ -33,7 +42,8 @@ int main (int arcg, char **argv){
   if(!(data = malloc(sizeof(float)*nf *nc))){
       fprintf(stderr, "Problem with memory allocation");
       exit(1);
-      }
+      }*/
+
   data=load_data(filein, &nf,&nc);
   
   /*  for(i=0;i<nc;i++){
