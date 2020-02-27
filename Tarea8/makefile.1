@@ -1,0 +1,27 @@
+
+all:  graficaPDE.gp
+
+graficaPDE.gp: gh1 gh2
+	gnuplot graficaPDE.gp 
+
+gh1: a.out1
+	./a.out
+
+gh2: a.out2
+	./a.out
+
+a.out1: tarea8.o 
+	cc -lm tarea8.o 
+
+a.out2: tarea8pto3.o
+	cc -lm tarea8pto3.o
+
+tarea8.o: tarea8.c
+	cc -c tarea8.c
+
+tarea8pto3.o: tarea8pto3.c
+	cc -c tarea8pto3.c
+
+clean: 
+	rm -f *.o
+

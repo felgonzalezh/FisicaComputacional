@@ -1,0 +1,26 @@
+
+all: periodo.py grafica.gp
+
+periodo.py: gh
+	python periodo.py
+
+
+grafica.gp: gh
+	gnuplot grafica.gp 
+
+gh: a.out
+	./a.out
+
+
+a.out: tarea71.o tarea72.o
+	cc -lm tarea71.o tarea72.o 
+
+tarea71.o: tarea71.c
+	cc -c tarea71.c
+
+tarea72.o: tarea72.c
+	cc -c tarea72.c
+
+clean: 
+	rm -f *.o
+

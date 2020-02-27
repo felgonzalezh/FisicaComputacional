@@ -1,0 +1,25 @@
+grafica.gp: all
+	gnuplot grafica.gp 
+
+all: a.out grafica.gp 
+	./a.out
+
+a.out: tarea61.o tarea62.o
+	cc -lm tarea61.o tarea62.o 
+
+tarea61.o: tarea61.c
+	cc -c tarea61.c
+
+tarea62.o: tarea62.c
+	cc -c tarea62.c
+
+
+
+
+clean: 
+	rm -f *.o
+
+
+
+
+	
